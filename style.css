@@ -1,0 +1,295 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+    font-size: 62.5% ;
+    --primary-blue: #065E7C;
+    --second-blue: #003c50;
+}
+
+body {
+    font-size: 1.69rem;
+    overflow: hidden;
+}
+
+
+
+
+
+#app {
+    font-family: "Mulish", sans-serif;
+    display: grid;
+    grid-template-areas:
+    "A A A"
+    "B B B"
+    "B B B"
+    "D D D";
+
+    height: 100vh;
+
+    grid-template-rows: max-content 1fr max-content;
+}
+
+.container {
+    padding: 1.6rem 3.2rem;
+    width: min(122rem, 100%);
+    margin: 0 auto;
+}
+
+
+/* header */
+header {
+    grid-area: A;
+    background-color: var(--primary-blue);
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+nav img {
+    height: 4rem;
+    width: 4rem;
+}
+
+form {
+    width: 100%;
+    margin: 0 20px;
+}
+
+label {
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+}
+
+input {
+    width: 100%;
+    opacity: .4;
+    height: 4rem;
+    border: none;
+    border-radius: 4px;
+    padding: 0px 10px;
+    font-weight: 600;
+    font-family: "Mulish", sans-serif;
+}
+
+input::placeholder {
+    color:  rgb(0, 0, 0);
+}
+
+.avatar {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+/* Main */
+section {
+    grid-area: B;
+    display: flex;
+    flex-direction: column;
+    overflow : hidden;
+    gap: 3.2rem;
+}
+
+main {
+    position: relative;
+    object-fit: cover;
+}
+
+main > img {
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+main div h1 {
+    font-size: 2.4rem;
+    font-weight: bold;
+}
+
+.button-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+main > div button {
+    width: 4rem;
+    height: 4rem;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--primary-blue);
+    margin: 10px 10px  0 0;
+    cursor: pointer;
+    transition: .2s;
+}
+
+main > div button:hover {
+    background-color: var(--second-blue);
+}
+
+
+
+main > div button img {
+    text-align: center;
+    height: 1.6rem;
+    width: 1.6rem;
+}
+
+main p {
+    font-size: 1.6rem;
+}
+
+
+
+
+/* Aside */
+aside {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+aside h1 {
+    font-size: 2.4rem;
+    font-weight: bold;
+    width: 100%;
+}
+
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    overflow: hidden ;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .3s;
+    padding: 3px;
+}
+
+.item:hover {
+    box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, .6);
+}
+
+.item img {
+    aspect-ratio: 16/9 !important;
+    object-fit: cover;
+    width: 151PX;
+    border-radius: 5px ;
+
+    transition: .2s ease-out;
+
+    display: block;
+}
+
+figcaption {
+    width: 64%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-around;
+    margin-left: .8rem;
+}
+
+figcaption h2 {
+    font-size: clamp(1.2rem, 1.2rem + 1vw, 2rem);
+    font-weight: bold;
+}
+
+figcaption p {
+    font-size: clamp(.8rem, .8rem + 1vw, 1.4rem);
+}
+
+footer {
+    grid-area: D;
+    background-color: var(--primary-blue);
+    text-align: center;
+    color: white;
+    font-weight: 600;
+}
+
+@media (min-width: 850px) {
+    section {
+        grid-area: B;
+        display: grid;
+        grid-template-areas:
+        "A A A B"
+        "A A A B";
+        overflow-y : scroll;
+    }
+    main {
+        grid-area: A;
+    }
+    aside {
+        grid-area: B;
+    }
+}
+
+
+
+/* ANIMATIONS*/
+
+
+
+
+header {
+    --startY: -100%;
+    animation: move .3s ease-out;
+}
+
+footer {
+    --startY: 100%;
+    animation: move .2s;
+}
+
+@keyframes move {
+    from {
+        transform: translateY(var(--startY));
+    }
+}
+
+
+
+
+main {
+    animation: move-side .4s;
+}
+
+@keyframes move-side {
+    0% {
+        transform: translateX(-10%);
+        opacity: 0;
+    }
+}
+
+
+.item {
+    --delay: .4s;
+    animation: appear .4s var(--delay) backwards;
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
